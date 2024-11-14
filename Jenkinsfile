@@ -23,5 +23,13 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            sh '''
+            echo 'zipping the artifact'
+            echo 'uploading the artifact'
+            '''
+        }
+    }
 }
 
