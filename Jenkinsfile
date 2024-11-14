@@ -3,9 +3,21 @@ pipeline {
 
     stages {
         stage('Build') {
+            agent{
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+
             steps {
                 sh '''
-                echo "from JenkinsFile in Repo" 
+                echo "Checking version & build" 
+                node --version
+                npm --version
+                npm ci
+                nmp run build
+                ls -la
                   '''
             }
         }
